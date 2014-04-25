@@ -1,0 +1,16 @@
+name: SeenEm
+main: me.olddragon.seenem.SeenEm
+version: 0.2
+commands:
+   seenem:
+      description: Find information on when a player was last online.
+      permission:
+      usage: /<command> <name>
+   seenem-search:
+      description: Find information on when players were last online.
+      permission:
+      usage: /<command> <partial name>
+   seenem-rsearch:
+      description: Find information on when players were last online.
+      permission:
+      usage: /<command> <regex pattern>

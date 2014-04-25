@@ -1,0 +1,4 @@
+# SeenEm
+# 
+DateFormat: "dd/MMM/yy HH:mm"
+SessionURL: "https://sessionserver.mojang.com/session/minecraft/profile/%1$s"
