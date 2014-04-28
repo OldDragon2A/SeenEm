@@ -7,8 +7,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.regex.Pattern;
 
-import mkremins.fanciful.FancyMessage;
-
 import org.bukkit.ChatColor;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.command.Command;
@@ -25,7 +23,12 @@ public class SeenEm extends JavaPlugin {
     String cmd = command.getName().toLowerCase();
 
     if (cmd.equalsIgnoreCase("seenem")) {
-      if (args.length == 0) {
+      if (args.length == 1) {
+        showPlayersInfo(sender, findPlayers(args[0]));
+      } else {
+        if (args.length > 1) {
+          sender.sendMessage(ChatColor.RED + "Too many arguments.");
+        }
         sender.sendMessage(ChatColor.GOLD + "Seen'Em Commands");
         sender.sendMessage(ChatColor.BLUE + "/seenem [player] - See when a player was first/last on.");
         sender.sendMessage(ChatColor.BLUE + "/seenem-search [partial] - Search for a player by partial name.");
@@ -120,13 +123,11 @@ public class SeenEm extends JavaPlugin {
     sender.sendMessage("  Played for: " + diffDate(first, last));
     sender.sendMessage("  Off for: " + diffDate(last, System.currentTimeMillis()));
     
-    FancyMessage msg = new FancyMessage("  ")
-      .then("Session")
-      .link(String.format(session_url, player.getUniqueId().toString().replaceAll("-", "")));
+    String url = String.format(session_url, player.getUniqueId().toString().replaceAll("-", ""));
     if (sender instanceof Player) {
-      msg.send((Player)sender);
+      ((Player)sender).sendRawMessage("{text:\"Session\",clickEvent:{action:open_url,value:\"" + url + "\"}}");
     } else {
-      sender.sendMessage(msg.toOldMessageFormat());
+      sender.sendMessage(url);
     }
   }
   

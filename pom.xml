@@ -38,11 +38,6 @@
       <artifactId>bukkit</artifactId>
       <scope>provided</scope>
     </dependency>
-    <dependency>
-      <groupId>mkremins</groupId>
-      <artifactId>fanciful</artifactId>
-      <version>0.1.5</version>
-    </dependency>
   </dependencies>
   <dependencyManagement>
     <dependencies>
