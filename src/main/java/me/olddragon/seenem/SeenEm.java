@@ -94,11 +94,13 @@ public class SeenEm extends JavaPlugin {
     return results;
   }
 
-  protected void showPlayersInfo(CommandSender sender,
-    List<OfflinePlayer> players) {
+  protected void showPlayersInfo(CommandSender sender, List<OfflinePlayer> players) {
     for (OfflinePlayer player : players) {
       showPlayerInfo(sender, player);
       sender.sendMessage("");
+    }
+    if (players.size() == 0) {
+      sender.sendMessage("No Matches Found");
     }
   }
 
@@ -126,7 +128,6 @@ public class SeenEm extends JavaPlugin {
     } else {
       sender.sendMessage(msg.toOldMessageFormat());
     }
-    
   }
   
   public void sendMessage(CommandSender sender, String format, Object...args) {
