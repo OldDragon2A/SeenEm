@@ -113,22 +113,16 @@ public class SeenEm extends JavaPlugin {
     
     sendMessage(
       sender,
-      "Player: %1$s [%2$s] [%3$s]",
+      "Player: %1$s [%2$s]\n  UUID: %3$s",
       player.getName(),
-      player.isOnline() ? "Online" : "Offline",
+      (player.isOnline() ? ChatColor.GREEN + "Online" : ChatColor.RED + "Offline") + ChatColor.RESET,
       player.getUniqueId().toString()
     );
     sender.sendMessage("  First Seen: " + (first == 0L ? "Never" : formatDate(first)));
     sender.sendMessage("  Last Seen: " + (last == 0L ? "Never" : formatDate(last)));
     sender.sendMessage("  Played for: " + diffDate(first, last));
     sender.sendMessage("  Off for: " + diffDate(last, System.currentTimeMillis()));
-    
-    String url = String.format(session_url, player.getUniqueId().toString().replaceAll("-", ""));
-    if (sender instanceof Player) {
-      ((Player)sender).sendRawMessage("{text:\"Session\",clickEvent:{action:open_url,value:\"" + url + "\"}}");
-    } else {
-      sender.sendMessage(url);
-    }
+    sender.sendMessage("  " + String.format(session_url, player.getUniqueId().toString().replaceAll("-", "")));
   }
   
   public void sendMessage(CommandSender sender, String format, Object...args) {
