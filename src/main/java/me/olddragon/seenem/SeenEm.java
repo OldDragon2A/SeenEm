@@ -120,8 +120,12 @@ public class SeenEm extends JavaPlugin {
     );
     sender.sendMessage("  First Seen: " + (first == 0L ? "Never" : formatDate(first)));
     sender.sendMessage("  Last Seen: " + (last == 0L ? "Never" : formatDate(last)));
-    sender.sendMessage("  Played for: " + diffDate(first, last));
-    sender.sendMessage("  Off for: " + diffDate(last, System.currentTimeMillis()));
+    if (last != 0L) {
+      sender.sendMessage("  Played for: " + diffDate(first, last));
+    }
+    if (!player.isOnline()) {
+      sender.sendMessage("  Off for: " + diffDate(last, System.currentTimeMillis()));
+    }
     sender.sendMessage("  " + String.format(session_url, player.getUniqueId().toString().replaceAll("-", "")));
   }
   
